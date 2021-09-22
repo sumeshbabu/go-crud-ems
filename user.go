@@ -18,6 +18,16 @@ type User struct {
 func getUsers(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Hello, from user get")
 	w.Header().Set("Content-Type", "application/json")
+	var users []User
+	db.Find(&users)
+	json.NewEncoder(w).Encode(users)
+}
+func createUser(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Hello, from user get")
+	w.Header().Set("Content-Type", "application/json")
+	var user User
+	json.NewDecoder(r.Body).Decode(&user)
+	db.Create(&user)
 
-	json.NewEncoder(w).Encode("Hello, from user get")
+	json.NewEncoder(w).Encode(&user)
 }
