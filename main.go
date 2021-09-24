@@ -32,6 +32,9 @@ func initializeRouter() {
 	router := mux.NewRouter()
 	router.HandleFunc("/users", getUsers).Methods("GET")
 	router.HandleFunc("/users", createUser).Methods("POST")
+	router.HandleFunc("/users/{id}", updateUser).Methods("PUT")
+	router.HandleFunc("/users/{id}", getUser).Methods("GET")
+	router.HandleFunc("/users/{id}", deleteUser).Methods("DELETE")
 	http.ListenAndServe(":9000", router)
 }
 func main() {
