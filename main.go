@@ -38,7 +38,7 @@ func initializeRouter() {
 	http.ListenAndServe(":9000", router)
 }
 func main() {
-	loadEnvVariable()
+	//loadEnvVariable()
 	InitializeMigration()
 	initializeRouter()
 
