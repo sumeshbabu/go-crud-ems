@@ -1,8 +1,8 @@
-version: "3.8"
+version: '3.8'
 services:
   db:
-    image:postgres:13.4-alpine
-    container_name:"database"
+    image: postgres
+    container_name: database
     ports:
       - "5432:5432" 
     environment:
@@ -12,15 +12,15 @@ services:
     networks:
       - emp-mgmnt-system
     volumes:
-      - database_postgres:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
   api:
     build: .
-    container_name: "rest-api"
+    container_name: rest-api
     environment:
-      DB_HOST:"db"
-      DB_USER:"postgres"
-      DB_PASSWORD:"postgres"
-      DB_DATABASE:"employee_mgmnt"
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_DATABASE: employee_mgmnt
     ports:
       - "9000:9000"
     depends_on:
@@ -28,7 +28,7 @@ services:
     networks:
       - emp-mgmnt-system
 volumes:
-  - database_postgres:
+  postgres:
 networks:
   emp-mgmnt-system:
-    driver:bridge
+    driver: bridge
